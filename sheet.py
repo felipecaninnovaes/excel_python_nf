@@ -3,6 +3,7 @@ import openpyxl
 import datetime
 from utils import FileChecker, FileUtils, GenericUtils
 from calcs import CalculateUtils
+from graph import plotar_entrada_saida
 
 def extract_sheet_data(sheet_path: str, table_name: str, init_row: int, col: int, del_file: bool) -> list:
     # Carregar o arquivo .xlsx
@@ -51,6 +52,7 @@ def entrada(nfe_path: str, nfse_path: str) -> dict:
     return total_values_nfse_nfe_entrada
 
 def saida(nfe_path: str, nfse_path: str, sat_path: str) -> dict:
+
     # Valores de configuração da planilha de NFE
     NFE_SAIDA_INIT_ROW: int = 5
     NFE_SAIDA_DATE_COL: int = 2
@@ -77,5 +79,6 @@ def saida(nfe_path: str, nfse_path: str, sat_path: str) -> dict:
 # Exemplo de uso
 # nfe_entrada = entrada('/home/felipecn/Downloads/TEMP/NFE-ENTRADA.xls', '/home/felipecn/Downloads/TEMP/NFSE-TOMADO.xls')
 # nfe_saida = saida('/home/felipecn/Downloads/TEMP/NFE-SAIDA.xls', '/home/felipecn/Downloads/TEMP/NFSE-PRESTADO.xls', '/home/felipecn/Downloads/TEMP/SAT.xls')
+# plotar_entrada_saida(nfe_entrada, nfe_saida)
 # print(nfe_entrada)
 # print(nfe_saida)
