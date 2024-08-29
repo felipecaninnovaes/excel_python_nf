@@ -3,7 +3,7 @@ import openpyxl
 import pandas as pd
 import os
 import datetime
-from utils import check_xlsx_as_valid
+from utils import FileChecker
 
 def extract_sheet_data(sheet_path: str, table_name: str, init_row: int, col: int, del_file: bool) -> list:
     # Carregar o arquivo .xlsx
@@ -98,17 +98,17 @@ def aggregate_monthly_values(dados):
     return monthly_sums
 
 def entrada(nfe_path: str, nfse_path: str):
-    total_values_nfe_entrada = filter_data_by_date_and_value(check_xlsx_as_valid(nfe_path), 'Notas', 5, 1, 9)
-    total_values_nfse_tomado = filter_data_by_date_and_value(check_xlsx_as_valid(nfse_path), 'Notas', 5, 0, 7)
+    total_values_nfe_entrada = filter_data_by_date_and_value(FileChecker().check_xlsx_as_valid(nfe_path), 'Notas', 5, 1, 9)
+    total_values_nfse_tomado = filter_data_by_date_and_value(FileChecker().check_xlsx_as_valid(nfse_path), 'Notas', 5, 0, 7)
 
     total_values_nfse_nfe_entrada = merge_lists(total_values_nfe_entrada, total_values_nfse_tomado)
     total_values_nfse_nfe_entrada = aggregate_monthly_values(total_values_nfse_nfe_entrada)
     return total_values_nfse_nfe_entrada
 
 def saida(nfe_path: str, nfse_path: str, sat_path):
-    total_values_nfe_saida = filter_data_by_date_and_value(check_xlsx_as_valid(nfe_path), 'Notas', 5, 1, 9)
-    total_values_nfse_emitido = filter_data_by_date_and_value(check_xlsx_as_valid(nfse_path), 'Notas', 5, 0, 7)
-    total_values_sat = filter_data_by_date_and_value(check_xlsx_as_valid(sat_path), 'CF-e SAT', 5, 0, 5)
+    total_values_nfe_saida = filter_data_by_date_and_value(FileChecker().check_xlsx_as_valid(nfe_path), 'Notas', 5, 1, 9)
+    total_values_nfse_emitido = filter_data_by_date_and_value(FileChecker().check_xlsx_as_valid(nfse_path), 'Notas', 5, 0, 7)
+    total_values_sat = filter_data_by_date_and_value(FileChecker().check_xlsx_as_valid(sat_path), 'CF-e SAT', 5, 0, 5)
 
     total_values_nfse_nfe_saida = merge_lists(total_values_nfe_saida, total_values_nfse_emitido, total_values_sat)
     total_values_nfse_nfe_saida = aggregate_monthly_values(total_values_nfse_nfe_saida)
