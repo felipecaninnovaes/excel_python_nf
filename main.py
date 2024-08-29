@@ -3,38 +3,7 @@ import openpyxl
 import pandas as pd
 import os
 import datetime
-
-def check_xlsx_as_valid(file_path: str) -> str:
-    # Verificar a extensão do arquivo
-    file_base_path = os.path.splitext(file_path)[0]
-    file_extension = os.path.splitext(file_path)[1]
-    
-    
-    if file_extension == '.XLS' or 'XLSX':
-        new_path = f'{file_base_path}{file_extension.lower()}'
-        rename_extension_file(file_path, new_path)
-        file_path = new_path
-    else:
-        pass    
-    # Se for .xls, converter para .xlsx
-    if file_extension.lower() == '.xls':
-        xlsx_path = file_path.replace('.xls', '.xlsx')
-        convert_xls_to_xlsx(file_path, xlsx_path)
-        file_path = xlsx_path
-        return file_path
-    else:
-        return file_path
-
-def rename_extension_file(old_path: str, new_path: str) -> None:
-    try:
-        os.rename(old_path, new_path)
-        print(f"Arquivo renomeado de {old_path} para {new_path}")
-    except FileNotFoundError:
-        print(f"Arquivo {old_path} não encontrado.")
-    except PermissionError:
-        print(f"Permissão negada para renomear {old_path}.")
-    except Exception as e:
-        print(f"Ocorreu um erro ao renomear o arquivo: {e}")
+from utils import check_xlsx_as_valid
 
 def extract_sheet_data(sheet_path: str, table_name: str, init_row: int, col: int, del_file: bool) -> list:
     # Carregar o arquivo .xlsx
@@ -63,16 +32,6 @@ def filter_data_by_date_and_value(file_path: str, table_name: str, init_line: in
     values_summed = sum_values(merged_lists)
     monthly_sums = sum_values_by_month(values_summed)
     return monthly_sums
-
-def convert_xls_to_xlsx(xls_path: str, xlsx_path: str):
-    # Ler o arquivo .xls
-    df = pd.read_excel(xls_path, sheet_name=None)
-    
-    # Criar um objeto ExcelWriter com o caminho do arquivo .xlsx
-    with pd.ExcelWriter(xlsx_path, engine='openpyxl') as writer:
-        # Iterar sobre as planilhas e salvar cada uma no novo arquivo .xlsx
-        for sheet_name, data in df.items():
-            data.to_excel(writer, sheet_name=sheet_name, index=False)
 
 def remove_file(file_path):
     os.remove(file_path)
