@@ -1,29 +1,31 @@
 import unittest
-from main import merge_lists, sum_values, sum_values_by_month, aggregate_monthly_values
+from main import sum_values, sum_values_by_month, aggregate_monthly_values, merge_lists
+from utils import FileUtils, FileChecker, GenericUtils
+
 
 class TestMergeLists(unittest.TestCase):
     def test_equal_length_lists(self):
-        result = merge_lists([1, 2, 3], ['a', 'b', 'c'])
+        result = GenericUtils.merge_lists([1, 2, 3], ['a', 'b', 'c'])
         expected = [[1, 'a'], [2, 'b'], [3, 'c']]
         self.assertEqual(result, expected)
 
     def test_different_length_lists(self):
-        result = merge_lists([1, 2], ['a', 'b', 'c'])
+        result = GenericUtils.merge_lists([1, 2], ['a', 'b', 'c'])
         expected = [[1, 'a'], [2, 'b']]
         self.assertEqual(result, expected)
 
     def test_no_lists(self):
-        result = merge_lists()
+        result = GenericUtils.merge_lists()
         expected = []
         self.assertEqual(result, expected)
 
     def test_empty_lists(self):
-        result = merge_lists([], [])
+        result = GenericUtils.merge_lists([], [])
         expected = []
         self.assertEqual(result, expected)
 
     def test_mixed_length_lists(self):
-        result = merge_lists([1, 2, 3], ['a'], [True, False])
+        result = GenericUtils.merge_lists([1, 2, 3], ['a'], [True, False])
         expected = [[1, 'a', True]]
         self.assertEqual(result, expected)
 
