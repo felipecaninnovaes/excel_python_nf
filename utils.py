@@ -71,6 +71,7 @@ class FileUtils:
     
     def remove_file(self, file_path):
         os.remove(file_path)
+
 class GenericUtils:
     def __init__(self):
         logging.basicConfig(level=logging.INFO)

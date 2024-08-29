@@ -1,7 +1,6 @@
 import unittest
-from main import sum_values, sum_values_by_month, aggregate_monthly_values, merge_lists
 from utils import FileUtils, FileChecker, GenericUtils
-
+from calcs import CalculateUtils
 
 class TestMergeLists(unittest.TestCase):
     def test_equal_length_lists(self):
@@ -29,8 +28,8 @@ class TestMergeLists(unittest.TestCase):
         expected = [[1, 'a', True]]
         self.assertEqual(result, expected)
 
-class TestSumValues(unittest.TestCase):
-    def test_sum_values_valid(self):
+class TestCalculateTotalByDay(unittest.TestCase):
+    def test_calculate_total_by_date_valid(self):
         data = [
             ['2023-01-01', 10],
             ['2023-01-01', 20],
@@ -40,9 +39,9 @@ class TestSumValues(unittest.TestCase):
             ['2023-01-01', 30],
             ['2023-01-02', 30]
         ]
-        self.assertEqual(sum_values(data), expected)
+        self.assertEqual(CalculateUtils.calculate_total_by_date(data), expected)
 
-    def test_sum_values_with_none(self):
+    def test_calculate_total_by_date_with_none(self):
         data = [
             ['2023-01-01', 10],
             ['2023-01-01', None],
@@ -52,34 +51,34 @@ class TestSumValues(unittest.TestCase):
             ['2023-01-01', 10],
             ['2023-01-02', 30]
         ]
-        self.assertEqual(sum_values(data), expected)
+        self.assertEqual(CalculateUtils.calculate_total_by_date(data), expected)
 
-    def test_sum_values_empty(self):
+    def test_calculate_total_by_date_empty(self):
         data = []
         expected = []
-        self.assertEqual(sum_values(data), expected)
+        self.assertEqual(CalculateUtils.calculate_total_by_date(data), expected)
 
 class TestSumValuesByMonth(unittest.TestCase):
 
     def test_empty_list(self):
         data_value_list = []
         expected_result = []
-        self.assertEqual(sum_values_by_month(data_value_list), expected_result)
+        self.assertEqual(CalculateUtils.calculate_total_by_month(data_value_list), expected_result)
 
     def test_list_with_none_values(self):
         data_value_list = [['01012023', None], ['02012023', 10.0], ['01022023', None]]
         expected_result = [['01', 10.0]]
-        self.assertEqual(sum_values_by_month(data_value_list), expected_result)
+        self.assertEqual(CalculateUtils.calculate_total_by_month(data_value_list), expected_result)
 
     def test_list_with_valid_values(self):
         data_value_list = [['01012023', 10.0], ['02012023', 20.0], ['01022023', 30.0]]
         expected_result = [['01', 30.0], ['02', 30.0]]
-        self.assertEqual(sum_values_by_month(data_value_list), expected_result)
+        self.assertEqual(CalculateUtils.calculate_total_by_month(data_value_list), expected_result)
 
     def test_list_with_rounding(self):
         data_value_list = [['01012023', 10.123], ['02012023', 20.456], ['01022023', 30.789]]
         expected_result = [['01', 30.58], ['02', 30.79]]
-        self.assertEqual(sum_values_by_month(data_value_list), expected_result)
+        self.assertEqual(CalculateUtils.calculate_total_by_month(data_value_list), expected_result)
 
 class TestAggregateMonthlyValues(unittest.TestCase):
     def test_aggregate_monthly_values(self):
@@ -93,7 +92,7 @@ class TestAggregateMonthlyValues(unittest.TestCase):
             2: 750,
             3: 1050
         }
-        self.assertEqual(aggregate_monthly_values(dados), resultado_esperado)
+        self.assertEqual(CalculateUtils.aggregate_monthly_values(dados), resultado_esperado)
 
     def test_aggregate_with_none_values(self):
         dados = [
@@ -106,7 +105,7 @@ class TestAggregateMonthlyValues(unittest.TestCase):
             2: 550,
             3: 650
         }
-        self.assertEqual(aggregate_monthly_values(dados), resultado_esperado)
+        self.assertEqual(CalculateUtils.aggregate_monthly_values(dados), resultado_esperado)
 
 
 if __name__ == '__main__':
