@@ -1,4 +1,4 @@
-from typing import List, Dict, Tuple, Any
+from typing import List, Any
 import openpyxl
 import pandas as pd
 import os
@@ -105,6 +105,7 @@ def sum_values(date: List[List[Any]]) -> List[List[Any]]:
     
     return [[date, round(value, 2)] for date, value in total_by_date.items()]
 
+# TODO: tratar caso a data venha no formato 'yyyy-mm-dd'
 def sum_values_by_month(data_value_list: List[List[Any]]) -> List[List[Any]]:
     monthly_sums = {}
     
@@ -155,7 +156,7 @@ def saida(nfe_path: str, nfse_path: str, sat_path):
     return total_values_nfse_nfe_saida
 
 # Exemplo de uso
-nfe_entrada = entrada('/home/felipecn/Downloads/TEMP/NFE-ENTRADA.XLS', '/home/felipecn/Downloads/TEMP/NFSE-TOMADO.XLS')
-nfe_saida = saida('/home/felipecn/Downloads/TEMP/NFE-SAIDA.XLS', '/home/felipecn/Downloads/TEMP/NFSE-PRESTADO.XLS', '/home/felipecn/Downloads/TEMP/SAT.XLS')
-print(nfe_saida)
+# nfe_entrada = entrada('/home/felipecn/Downloads/TEMP/NFE-ENTRADA.XLS', '/home/felipecn/Downloads/TEMP/NFSE-TOMADO.XLS')
+# nfe_saida = saida('/home/felipecn/Downloads/TEMP/NFE-SAIDA.XLS', '/home/felipecn/Downloads/TEMP/NFSE-PRESTADO.XLS', '/home/felipecn/Downloads/TEMP/SAT.XLS')
+# print(nfe_saida)
 
