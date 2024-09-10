@@ -51,3 +51,19 @@ A aplicação será submetida a testes para garantir sua estabilidade e eficiên
 **Conclusão:**
 
 Em resumo, a atividade de extensão que realizei foi uma experiência rica e enriquecedora, que permitiu aplicar a teoria e os conteúdos da disciplina "Tópicos de Big Data em Python" na prática.
+
+**Imagens:**
+
+**Interface:** 
+
+![Interface Grafica](https://github.com/felipecaninnovaes/excel_python_nf/blob/dev/imgs/Captura%20de%20imagem_20240910_152236.png)
+
+**Grafico:** 
+
+![Grafico](https://github.com/felipecaninnovaes/excel_python_nf/blob/dev/imgs/Grafico_Final.png)
+
+**Integrantes** 
+
+Felipe Canin Novaes: **Documentação/Desenvolvimento**
+
+
