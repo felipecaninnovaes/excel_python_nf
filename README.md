@@ -2,6 +2,7 @@
 
 **Resumo:**
 Nesta atividade de extensão, desenvolvi uma solução de Big Data em Python que combina os dados das 5 planilhas em um gráfico. A aplicação dos conteúdos da disciplina "Tópicos de Big Data em Python" foi fundamental para a realização desta atividade. Neste relato, apresento a contextualização, metodologia e resultados da atividade, bem como as facilidades e dificuldades enfrentadas e as descobertas e aprendagens obtidas.
+
 **Objetivos:**
 
 1. Desenvolver uma aplicação recebe 5 planilhas process e retorna um grafico.
@@ -56,11 +57,11 @@ Em resumo, a atividade de extensão que realizei foi uma experiência rica e enr
 
 **Interface:** 
 
-![Interface Grafica](https://github.com/felipecaninnovaes/excel_python_nf/blob/dev/imgs/Captura%20de%20imagem_20240910_152236.png)
+![Interface Grafica](https://github.com/felipecaninnovaes/excel_python_nf/blob/main/imgs/Captura%20de%20imagem_20240910_152236.png)
 
 **Grafico:** 
 
-![Grafico](https://github.com/felipecaninnovaes/excel_python_nf/blob/dev/imgs/Grafico_Final.png)
+![Grafico](https://github.com/felipecaninnovaes/excel_python_nf/blob/main/imgs/Grafico_Final.png)
 
 **Integrantes** 
 
