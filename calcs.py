@@ -32,6 +32,7 @@ class CalculateUtils:
             data, value = item
             month = data[2:4]  # Extrair o mês da data (dois primeiros dígitos)
             if value is not None:
+                value = round(value, 2)  # Arredondar o valor para 2 casas decimais
                 if month in monthly_sums:
                     monthly_sums[month] += value
                 else:
@@ -51,8 +52,8 @@ class CalculateUtils:
                 if month_value_pair is not None:
                     month, value = month_value_pair
                     if month in monthly_sums:
-                        monthly_sums[month] += value
+                        monthly_sums[month] = round(monthly_sums[month] + value, 2)
                     else:
-                        monthly_sums[month] = value
+                        monthly_sums[month] = round(value, 2)
 
         return monthly_sums

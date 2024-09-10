@@ -34,6 +34,11 @@ def filter_data_by_date_and_value(file_path: str, table_name: str, init_line: in
     return monthly_sums
 
 def entrada(nfe_path: str, nfse_path: str) -> dict:
+    # Valores iniciais das listas
+    total_values_nfe_entrada: list = []
+    total_values_nfse_tomado: list = []
+    total_values_nfse_nfe_entrada: dict = {}
+    
     # Valores de configuração da planilha de NFE
     NFE_ENTRADA_INIT_ROW: int = 5
     NFE_ENTRADA_DATE_COL: int = 2
@@ -44,11 +49,16 @@ def entrada(nfe_path: str, nfse_path: str) -> dict:
     NFSE_TOMADO_DATE_COL: int = 1
     NFSE_TOMADO_VALUE_COL: int = 8
     
-    total_values_nfe_entrada = filter_data_by_date_and_value(FileChecker().check_xlsx_as_valid(nfe_path), 'Notas', NFE_ENTRADA_INIT_ROW, NFE_ENTRADA_DATE_COL, NFE_ENTRADA_VALUE_COL)
-    total_values_nfse_tomado = filter_data_by_date_and_value(FileChecker().check_xlsx_as_valid(nfse_path), 'Notas', NFSE_TOMADO_INIT_ROW, NFSE_TOMADO_DATE_COL, NFSE_TOMADO_VALUE_COL)
+    if nfe_path is not None:
+        total_values_nfe_entrada = filter_data_by_date_and_value(FileChecker().check_xlsx_as_valid(nfe_path), 'Notas', NFE_ENTRADA_INIT_ROW, NFE_ENTRADA_DATE_COL, NFE_ENTRADA_VALUE_COL)
+    if nfse_path is not None:
+        total_values_nfse_tomado = filter_data_by_date_and_value(FileChecker().check_xlsx_as_valid(nfse_path), 'Notas', NFSE_TOMADO_INIT_ROW, NFSE_TOMADO_DATE_COL, NFSE_TOMADO_VALUE_COL)
 
-    total_values_nfse_nfe_entrada = GenericUtils.merge_lists(total_values_nfe_entrada, total_values_nfse_tomado)
-    total_values_nfse_nfe_entrada = CalculateUtils.aggregate_monthly_values(total_values_nfse_nfe_entrada)
+    if nfe_path is not None and nfse_path is not None:
+        total_values_nfse_nfe_entrada = GenericUtils.merge_lists(total_values_nfe_entrada, total_values_nfse_tomado)
+        total_values_nfse_nfe_entrada = CalculateUtils.aggregate_monthly_values(total_values_nfse_nfe_entrada)
+    elif nfe_path is not None and nfse_path is None:
+        total_values_nfe_entrada = CalculateUtils.aggregate_monthly_values(total_values_nfe_entrada)
     return total_values_nfse_nfe_entrada
 
 def saida(nfe_path: str, nfse_path: str, sat_path: str) -> dict:
